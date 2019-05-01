@@ -1,0 +1,8 @@
+site_name: Computer Trends
+theme: readthedocs
+nav:
+  - Home: 'index.md'
+  - Linux: 'linux.md'
+  - Windows: 'windows.md'
+  - Electronics: 'electronics.md'
+  - Website and Email: 'website_and_email.md'
