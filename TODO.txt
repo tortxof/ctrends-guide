@@ -1,0 +1,10 @@
+Laptop repair
+  removing rubber feet, regluing rubber feet
+Where to download linux
+fdisk
+photorec
+nwipe
+fix_perms / manually
+man pages
+passwd
+adduser?
