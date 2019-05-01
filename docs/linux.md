@@ -81,8 +81,65 @@ even being recognized, and if so, what is the name of the device.
 The `dmesg` command will show kernel log messages. By watching the log messages,
 we can see the process of the OS recognizing the drive and assigning it a name.
 
+### Automatically Mount A Filesystem
+
+If the drive is clean, it will usually mount automatically when you plug it in.
+If it doesn't, you can try to access it from the GUI. If it does mount, it will
+be in `/media/ubuntu/<name>`, where `<name>` is the filesystem label. If the
+drive doesn't mount because of being dirty, the pop-up error message will tell
+you where the partition is. Usually it's something like `/dev/sdc3`.
+
 ### Manually Mount A Filesystem
 
-### Clone A Filesystem With gddrescue
+To manually mount the drive, you need an empty directory to mount it to. Create
+one using `mkdir`.
+
+`mkdir sdc3`
+
+Then mount the drive to the empty directory.
+
+`sudo mount -r /dev/sdc3 sdc3`
+
+At this point you should be able to see the data in the GUI, or in the terminal
+with `ls`.
+
+`ls sdc3`
+
+### Copy Data With `rsync`
+
+Now that we have everything mounted, we can use `rsync` to copy the data.
+
+`rsync -a --info=progress2 <source> <destination>`
+
+The `-a` option tells rsync to copy all subdirectories. The `--info=progress2`
+option gives us a progress bar.
+
+`rsync` will behave differently depending on if we put a trailing `/` after the
+source path. Without a trailing `/` the source directory will be copied to the
+destination. With a trailing `/` the *contents* of the source directory will be
+copied to the destination.
+
+For example, lets say we have the drive we are copying from mounted at `sda3`,
+and an external drive we are copying to mounted at `/media/ubuntu/external`.
+
+Running the following command will create the `customer_name` directory on the
+external drive, and create the `Users` directory inside of that. We will end up
+with `/media/ubuntu/external/customer_name/Users`.
+
+`rsync -a sda3/Users /media/ubuntu/external/customer_name/`
+
+What if we want the *contents* of `sda3/Users` copied directly to
+`/media/ubuntu/external/customer_name`? We can do that with the following
+command.
+
+`rsync -a sda3/Users/ /media/ubuntu/external/customer_name/`
+
+Then we will end up with the *contents* of users in
+`/media/ubuntu/external/customer_name/`. There will not be a `Users` directory
+on the external drive, only the contents of `Users` will be copied.
+
+If in doubt, run the command without the trailing `/`.
+
+### Clone A Partition With gddrescue
 
 ## Secure Wipe
