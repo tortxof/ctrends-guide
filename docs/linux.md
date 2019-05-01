@@ -81,6 +81,10 @@ even being recognized, and if so, what is the name of the device.
 The `dmesg` command will show kernel log messages. By watching the log messages,
 we can see the process of the OS recognizing the drive and assigning it a name.
 
+The `fdisk` command can be used to list all partitions on the system.
+
+`sudo fdisk -l`
+
 ### Automatically Mount A Filesystem
 
 If the drive is clean, it will usually mount automatically when you plug it in.
