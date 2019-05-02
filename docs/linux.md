@@ -228,3 +228,20 @@ photorec sdc3.img
 ```
 
 ## Secure Wipe
+
+To perform a secure wipe on a drive, use `nwipe`.
+
+Install nwipe:
+
+```text
+sudo apt install nwipe
+```
+
+Example:
+
+```text
+sudo nwipe /dev/sdc
+```
+
+Notice we are wiping the entire drive `/dev/sdc` and not just a partition
+`/dev/sdc1`.
