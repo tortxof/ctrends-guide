@@ -144,6 +144,51 @@ on the external drive, only the contents of `Users` will be copied.
 
 If in doubt, run the command without the trailing `/`.
 
-### Clone A Partition With gddrescue
+### Clone A Partition With ddrescue
+
+If the partition can't be mounted, or the drive is quickly getting worse, you
+may need to mirror the partition to a file. `ddrescue` can mirror a drive with
+bad blocks by copying all of the good blocks first, skipping the bad ones and
+coming back to them later.
+
+From the [ddrescue
+manual](https://www.gnu.org/software/ddrescue/manual/ddrescue_manual.html):
+
+>   Other programs read the data sequentially but switch to small size reads
+    when they find errors. This is a bad idea because it means spending more
+    time at error areas, damaging the surface, the heads and the drive
+    mechanics, instead of getting out of them as fast as possible. This behavior
+    reduces the chances of rescuing the remaining good data.
+
+Install: `sudo apt install gddrescue`
+
+You will need at least as much free disk space as the size of the partition you
+are mirroring. `ddrescue` also uses a map file to track which parts of the drive
+have been successfully copied.
+
+Here is an example:
+
+`sudo ddrescue /dev/sdc3 sdc3.img sdc3.map`
+
+The first argument, `/dev/sdc3`, is the partition we want to mirror. The second
+argument, `sdc3.img`, is the file we are mirroring to. The last argument,
+`sdc3.map`, is the map file. The map file allows you to stop the mirroring, and
+then restart later with the same command. `ddrescue` will pick up right where it
+left off.
+
+Once the mirroring is done, you can mount the `.img` file, or run other data
+recovery tools on it without worrying about the drive dying.
+
+To mount the partition image, create an empty directory to mount to, and then
+mount it:
+
+```sh
+mkdir sdc3
+sudo mount -o loop,ro sdc3.img sdc3
+```
+
+To run a tool like `photorec` on the image, pass the image file as an argument:
+
+`photorec sdc3.img`
 
 ## Secure Wipe
