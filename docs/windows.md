@@ -5,7 +5,9 @@
 When using robocopy, you need to supply a source and destination directory. You
 will need to create the destination directory if it doesn't already exist.
 
-`robocopy <source> <destination> /e /r:1 /w:1`
+```text
+robocopy <source> <destination> /e /r:1 /w:1
+```
 
 Replace `<source>` with the directory you want to copy, and `<destination>` with
 the directory to copy to. The `/r` option tells robocopy how many times to retry
