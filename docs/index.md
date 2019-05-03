@@ -17,3 +17,6 @@ Various tips and tricks. How to use `robocopy`.
 ## Electronics
 
 Explanation of voltage, current, and how to test using a multimeter.
+
+The source for this website is on GitHub:
+<https://github.com/tortxof/ctrends-guide>
