@@ -15,3 +15,7 @@ When `tar` finishes (it can take a while), you should see the installer in
 Applications. For the next step, see this page on Apple's website:
 
 <https://support.apple.com/en-us/HT201372>
+
+## Apple Hardware Test
+
+<https://github.com/upekkha/AppleHardwareTest>
