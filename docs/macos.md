@@ -16,6 +16,10 @@ Applications. For the next step, see this page on Apple's website:
 
 <https://support.apple.com/en-us/HT201372>
 
+## Mac Startup Keys
+
+<https://support.apple.com/en-us/HT201255>
+
 ## Apple Hardware Test
 
 <https://github.com/upekkha/AppleHardwareTest>
